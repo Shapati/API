@@ -40,6 +40,7 @@ export const Data = () =>{
         
         </div>
       ))}
+      {error && <p>{error}</p>}
     </div>
   )
 
