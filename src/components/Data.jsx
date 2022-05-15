@@ -4,6 +4,7 @@ export const Data = () =>{
 
   const [data,setData] = useState(null)
   const [error,setError] = useState(null)
+  const [num,setNum] = useState(3)
   const url = 'https://jsonplaceholder.typicode.com/users'
 
   const getData = async ()=>{
@@ -27,11 +28,16 @@ export const Data = () =>{
     getData()
   },[url])
 
- 
+  const handleAdd = () =>{
+     setNum(prev=> prev+3)
+  }
 
   return(
     <div>
-      {data && data.map((value,index)=>(
+
+   
+    <div className={styles.data}>
+      {data && data.slice(0,num).map((value,index)=>(
         <div key={index} className={styles.box}>
           <h3>name:{value.name}</h3>
           <h4>usename:{value.username}</h4>
@@ -40,7 +46,13 @@ export const Data = () =>{
         
         </div>
       ))}
+      
+      
       {error && <p>{error}</p>}
+    </div>
+    <div className={styles.loadmore}>
+        <button onClick={()=>handleAdd()}>Load more</button>
+      </div>  
     </div>
   )
 
